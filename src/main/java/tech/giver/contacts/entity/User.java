@@ -30,9 +30,7 @@ public class User {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Role> roles;
 
-    public User(String firstname, String lastname, String username, String password) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
         roles = new ArrayList<>();
