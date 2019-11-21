@@ -1,9 +1,11 @@
 package tech.giver.contacts.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import tech.giver.contacts.dto.UserDto;
@@ -21,5 +23,10 @@ public class UserController {
     @PostMapping("/add")
     public User createUser(@RequestBody UserDto userDto) {
         return userService.save(Convert.userDtoToUser(userDto));
+    }
+
+    @GetMapping("/{id}")
+    public User info(@RequestParam Long id) {
+        return userService.getById(id);
     }
 }
