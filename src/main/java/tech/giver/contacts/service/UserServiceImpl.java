@@ -4,6 +4,7 @@ import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tech.giver.contacts.dto.UserDto;
 import tech.giver.contacts.entity.Role;
 import tech.giver.contacts.entity.User;
 import tech.giver.contacts.repository.UserRepository;
@@ -38,5 +39,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getById(Long id) {
         return userRepository.findById(id).get();
+    }
+
+    @Override
+    public User updateById(UserDto userDto, Long id) {
+        User userDb = getById(id);
+        userDb.setUsername(userDto.getUsername());
+        userDb.setPassword(userDto.getPassword());
+        userDb.setFirstname(userDto.getFirstname());
+        userDb.setLastname(userDto.getLastname());
+        userDb.setRoles(userDto.getRoles());
+        return save(userDb);
     }
 }
